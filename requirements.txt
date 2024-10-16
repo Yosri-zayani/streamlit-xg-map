@@ -3,4 +3,4 @@ pandas
 matplotlib
 mplsoccer
 understatapi
-selenium==3.8.0
+selenium==1.0.0
