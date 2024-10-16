@@ -3,14 +3,7 @@ import pandas as pd
 from understatapi import UnderstatClient
 import matplotlib.pyplot as plt
 from mplsoccer import VerticalPitch
-from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
 
-def create_webdriver():
-    opts = Options()
-    opts.headless = True  # Set headless mode using the new approach
-    driver = webdriver.Firefox(options=opts)
-    return driver
 
 # Set up the Streamlit page layout
 st.set_page_config(layout="wide")
