@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 from mplsoccer import VerticalPitch
 
 
+
 # Set up the Streamlit page layout
-st.set_page_config(layout="wide")
+st.set_page_config(layout="centered")
 
 # Create a title for the app
 st.title("xG Map Visualization For 5 Big Leagues")
@@ -153,16 +154,22 @@ observations = []
 
 # Add observations based on player's performance
 if total_shots < 10:
-    observations.append("The player has taken fewer than 10 shots this season, indicating limited goal-scoring opportunities.")
+    observations.append("The player has taken fewer than 10 shots this season, indicating limited goal-scoring opportunities. This could be due to a lack of involvement in attacking plays or being overshadowed by teammates.")
 if total_goals > 0:
-    observations.append("The player has successfully converted some chances into goals, showcasing their finishing ability.")
+    observations.append("The player has successfully converted some chances into goals, showcasing their finishing ability. However, it's essential to analyze the quality of these chances to assess if this performance is sustainable.")
 else:
-    observations.append("The player has not scored any goals yet this season, highlighting a need for improvement in finishing.")
+    observations.append("The player has not scored any goals yet this season, highlighting a need for improvement in finishing. This could be due to poor shot selection or positioning.")
 
 if total_xG > 0:
-    observations.append(f"The player's expected goals (xG) total is {total_xG:.2f}, which suggests they are creating scoring chances.")
+    observations.append(f"The player's expected goals (xG) total is {total_xG:.2f}, which suggests they are creating scoring chances. A higher xG indicates that the player is getting into good positions to score.")
 else:
-    observations.append("The player has yet to create significant goal-scoring opportunities this season.")
+    observations.append("The player has yet to create significant goal-scoring opportunities this season. This could point to issues with their movement off the ball or a lack of service from teammates.")
+
+# Analyze shot quality
+if total_goals > 0 and total_xG > total_goals:
+    observations.append("The player has a positive xG-to-goals ratio, suggesting that they are underperforming relative to their expected output. This could indicate potential for improvement in finishing.")
+elif total_goals == 0 and total_xG > 0:
+    observations.append("Despite having a positive xG, the player has not converted these opportunities into goals. Focusing on shot accuracy and decision-making in critical moments could help.")
 
 # Display observations
 for obs in observations:
@@ -174,14 +181,20 @@ recommendations = []
 
 # Provide recommendations based on performance
 if total_goals / total_shots < 0.2:
-    recommendations.append("Consider improving shot accuracy, as currently, less than 20% of shots are resulting in goals.")
+    recommendations.append("Consider improving shot accuracy, as currently, less than 20% of shots are resulting in goals. Practicing finishing drills under pressure may enhance composure.")
 if xG_per_shot < 0.1:
-    recommendations.append("Focus on taking higher quality chances, as the average xG per shot is below 0.1.")
+    recommendations.append("Focus on taking higher quality chances, as the average xG per shot is below 0.1. This may involve positioning better during attacks or making runs into more dangerous areas.")
 if total_xG < 5:
-    recommendations.append("Aim to increase total xG by seeking more goal-scoring opportunities.")
+    recommendations.append("Aim to increase total xG by seeking more goal-scoring opportunities. Engaging more actively in offensive plays and improving link-up play with teammates can help.")
 
 if not recommendations:
     recommendations.append("Keep up the great work! Your shooting and goal-scoring abilities are on point.")
+
+# Additional Recommendations Based on Performance Trends
+if total_goals == 0 and total_shots > 5:
+    recommendations.append("Consider reviewing match footage to identify patterns in missed opportunities. Understanding these trends can help refine your approach during matches.")
+if total_xG >= 3 and total_goals == 0:
+    recommendations.append("It's crucial to maintain confidence despite recent struggles in front of goal. Focus on mental resilience and maintaining a positive mindset during training.")
 
 # Display recommendations
 for rec in recommendations:
