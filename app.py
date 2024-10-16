@@ -31,9 +31,9 @@ with col1:
     # Extract player and team information
     player_data = {"ids": [], "names": [], "teams": []}
     for item in league_player_data:
-        player_data[0].append(item['id'])
-        player_data[1].append(item['player_name'])
-        player_data[2].append(item['team_title'])
+        player_data["ids"].append(item['id'])
+        player_data["names"].append(item['player_name'])
+        player_data["teams"].append(item['team_title'])
 
     # Create team and player dropdowns
     teams = sorted(set(player_data['teams']))

@@ -1,4 +1,5 @@
-understatapi
 streamlit
 pandas
 matplotlib
+understatapi
+selenium==2.8.0
