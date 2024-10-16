@@ -2,4 +2,4 @@ streamlit
 pandas
 matplotlib
 understatapi
-selenium==2.8.0
+selenium>=4.0.0
