@@ -1,6 +1,4 @@
+understatapi
 streamlit
 pandas
 matplotlib
-mplsoccer
-understatapi
-selenium==1.0.0
